@@ -4,6 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ---
 
+NOTE: Skip to Google Mock heading for google mock test implementation.
+
 ## Overview
 This repository contains the implementation of a perception module capable of detecting and tracking traffic lanes. We assume that the camera is attached at the center of a moving vehicle. The input to this module can be any of the following formats: an image, a video or a live stream. The developed module is capable of detecting and augmenting lines on the input format while updating the heading angle of the car to the controller. Further details about the module are discussed in the algorithm overview.
 
@@ -98,7 +100,7 @@ SOFTWARE.
 ```
 ## Build package
 ```
-git clone --recursive https://github.com/saimouli/Lane-Detection-Perception-Module.git
+git clone -b GMock_Extra_Credit --single-branch https://github.com/AdarshJS/Lane-Detection-Perception-Module.git
 cd <path to repository>
 mkdir build
 cd build
@@ -142,7 +144,10 @@ Enter a valid camera ID and the live stream will be displayed. If there are vali
 
 
 ## Running tests
+While inside the cloned repository,
+
 ```
+cd build
 Run tests: ./test/cpp-test
 ```
 ## Building for code coverage 
@@ -204,3 +209,23 @@ unfold Build Targets, double click on "all" to build all projects.
 select Run As -> Local C/C++ Application
 
 2. Choose the binaries to run (vision-app for application, cpp-test for unit testing)
+
+## Google Mock Testing
+
+From a smplified view, Google Mock is a way of testing high level classes without having all the lower level classes functioning. Four of the UserInterface class' methods have been mocked and used for testing the FrameParser class in this implementation. The mocked methods in the UserInterface class have to be declared as virtual methods, and a derived class of UserInterface will contain the implementation of those virtual functions. The derived class in this case is called UserInterfaceDerived, which ensures that the app implementation is not broken by making UserInterface methods virtual. Another derived class is present inside FrameParserTest.cpp which "emulates" the virtual classes.
+
+## Update CMakelists
+While using Google Mock for your own projects, note these changes in CMakelists:
+
+In the main CMakelists.txt, change add_subdirectory(vendor/googletest/googltest) to add_subdirectory(vendor/googletest). This would add GMock libs to the project.
+
+In the test/CMakelists, add gmock in the target link libraries.
+
+## Learn More
+To learn more about Google Mock refer [here](https://github.com/abseil/googletest/blob/master/googlemock/docs/ForDummies.md) 
+
+The google mock cheatsheet can be found [here](https://github.com/abseil/googletest/blob/master/googlemock/docs/CheatSheet.md) and the cookbook can be found [here](https://github.com/abseil/googletest/blob/master/googlemock/docs/CookBook.md)
+
+The lane detection code and the tests can be run as described before.
+
+
