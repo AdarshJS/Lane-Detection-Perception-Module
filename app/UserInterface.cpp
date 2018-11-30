@@ -23,7 +23,7 @@
  *******************************************************************************/
 
 /**
- * @file      main.cpp
+ * @file      UserInterface.cpp
  * @author    Saimouli Katragadda (saimouli)
  * @author    Adarsh Jagan Sathyamoorthy
  * @copyright MIT License
