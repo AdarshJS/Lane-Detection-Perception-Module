@@ -39,6 +39,10 @@
 #include<cmath>
 #include<iostream>
 
+using ::testing::AtLeast;
+using ::testing::Return;
+using ::testing::_;
+
 class MockUserInterface : public UserInterface {
  public:
   MOCK_METHOD0(returnDefaultChoice, std::string());
@@ -53,12 +57,21 @@ class MockUserInterface : public UserInterface {
  *@return none
  */
 
-TEST(extractFramesCheck, testProperReturnsAfterGoodRun) {
+TEST(extractFramesCheck, testProperReturnsAfterGoodRun1) {
   FrameParser f;
-  UserInterface u(1, "../data/testVideo.mp4", 15, "y");
-  std::cout << u.returnDefaultChoice() << std::endl;
+   MockUserInterface interface;
+
+  EXPECT_CALL(interface, returnDefaultChoice()).Times(2).WillRepeatedly(
+      Return("y"));
+  EXPECT_CALL(interface, returnUserChoice()).Times(1).WillOnce(Return(0));
+
+  EXPECT_CALL(interface, returnInputLocation()).Times(AtLeast(1)).WillRepeatedly(
+      Return("../data/test.png"));
+
+  std::cout << interface.returnDefaultChoice() << std::endl;
   int returnValue;
-  returnValue = f.extractFrame(u, true);
+  returnValue = f.extractFrame(&interface, true);
   ASSERT_EQ(returnValue, 0);
 }
+
 
