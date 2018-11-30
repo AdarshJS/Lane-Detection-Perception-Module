@@ -33,7 +33,7 @@
 #include "UserInterfaceDerived.h"
 
 UserInterfaceDerived::UserInterfaceDerived() {
-  std::cout<<"Derived Default constructor"<<std::endl;
+  std::cout<< "Derived Default constructor"<< std::endl;
 }
 
 UserInterfaceDerived::~UserInterfaceDerived() {
