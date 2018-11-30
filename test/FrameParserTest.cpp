@@ -59,7 +59,7 @@ class MockUserInterface : public UserInterface {
 
 TEST(processImagecheck, testProperReturnsAfterGoodRun1) {
   FrameParser f;
-   MockUserInterface interface;
+  MockUserInterface interface;
 
   EXPECT_CALL(interface, returnDefaultChoice()).Times(2).WillRepeatedly(
       Return("y"));
@@ -85,7 +85,6 @@ TEST(extractFramesCheck, testProperReturnsAfterGoodRun2) {
 
   EXPECT_CALL(interface, returnDefaultChoice()).Times(2).WillRepeatedly(
       Return("y"));
-  //EXPECT_CALL(interface, returnCameraID()).Times(1).WillOnce(Return(15));
   EXPECT_CALL(interface, returnUserChoice()).Times(1).WillOnce(Return(1));
 
   EXPECT_CALL(interface, returnInputLocation()).Times(AtLeast(1)).WillRepeatedly(
