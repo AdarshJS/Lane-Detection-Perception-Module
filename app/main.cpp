@@ -32,11 +32,14 @@
  */
 #include <iostream>
 #include <UserInterface.h>
+#include <UserInterfaceDerived.h>
 #include <FrameParser.h>
 
 int main() {
   FrameParser parser;
-  UserInterface interface;
+  UserInterface* interface;
+  UserInterfaceDerived derived;
+  interface = &derived;
   parser.extractFrame(interface, false);
   return 0;
 }
