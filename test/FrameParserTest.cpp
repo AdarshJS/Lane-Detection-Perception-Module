@@ -39,6 +39,14 @@
 #include<cmath>
 #include<iostream>
 
+class MockUserInterface : public UserInterface {
+ public:
+  MOCK_METHOD0(returnDefaultChoice, std::string());
+  MOCK_METHOD0(returnUserChoice, int());
+  MOCK_METHOD0(returnInputLocation, std::string());
+  MOCK_METHOD0(returnCameraID, int());
+};
+
 /**
  *@brief  Case to test if extractFrame functions executes successfully
  *@param  none
