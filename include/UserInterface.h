@@ -49,7 +49,7 @@
  */
 
 class UserInterface {
- private:
+ protected:
   /**
    * @brief Container to store user input choice
    */
@@ -90,7 +90,7 @@ class UserInterface {
    * @param none
    * @return none
    */
-  ~UserInterface();
+  virtual ~UserInterface();
 
   /**
    * @brief Function returnDefaultChoice
@@ -99,7 +99,7 @@ class UserInterface {
    * The following function will prompt user if they want to test for
    * the default case
    */
-  std::string returnDefaultChoice();
+  virtual std::string returnDefaultChoice() = 0;
 
   /**
    * @brief Function getUserChoice
@@ -117,7 +117,7 @@ class UserInterface {
    * The following function will access and return the private varible
    * userChoice, which contains the user input.
    */
-  int returnUserChoice();
+  virtual int returnUserChoice() = 0;
 
   /**
    * @brief Function getInputLocation
@@ -135,7 +135,7 @@ class UserInterface {
    * The following function will access and return the private varible
    * fileLocation, which contains the user input file location.
    */
-  std::string returnInputLocation();
+  virtual std::string returnInputLocation() = 0;
 
   /**
    * @brief Function returnCameraID
@@ -144,7 +144,7 @@ class UserInterface {
    * The following function will access and return the private varible
    * cameraID, which contains the user input for the camera number.
    */
-  int returnCameraID();
+  virtual int returnCameraID() = 0;
 
   /**
    * @brief Function displayLanes
