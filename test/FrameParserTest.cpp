@@ -57,7 +57,7 @@ class MockUserInterface : public UserInterface {
  *@return none
  */
 
-TEST(extractFramesCheck, testProperReturnsAfterGoodRun1) {
+TEST(processImagecheck, testProperReturnsAfterGoodRun1) {
   FrameParser f;
    MockUserInterface interface;
 
@@ -79,7 +79,7 @@ TEST(extractFramesCheck, testProperReturnsAfterGoodRun1) {
  *@param  none
  *@return none
  */
-TEST(processImagecheck, testProperReturnsAfterGoodRun2) {
+TEST(extractFramesCheck, testProperReturnsAfterGoodRun2) {
   FrameParser f;
   MockUserInterface interface;
 
