@@ -39,24 +39,24 @@ FrameParser::FrameParser() {
 FrameParser::~FrameParser() {
 }
 
-int FrameParser::extractFrame(UserInterface interface, bool test) {
+int FrameParser::extractFrame(UserInterface* interface, bool test) {
   VisionModule process;
   std::string defaultChoice;
-  defaultChoice = interface.returnDefaultChoice();
+  defaultChoice = interface->returnDefaultChoice();
   if (defaultChoice == "n" || defaultChoice == "N") {
-    interface.getUserChoice();
-    interface.getInputLocation();
+    interface->getUserChoice();
+    interface->getInputLocation();
   }
 
   int choice;
-  choice = interface.returnUserChoice();
+  choice = interface->returnUserChoice();
 
   std::string fileName;
   int cID;
 
   // image input format
   if (choice == 0) {
-    fileName = interface.returnInputLocation();
+    fileName = interface->returnInputLocation();
     frame = cv::imread(fileName);
     // check for valid input
     if (!frame.data) {
@@ -65,7 +65,7 @@ int FrameParser::extractFrame(UserInterface interface, bool test) {
     }
     frame = process.laneDetection(frame);
     if (test == false) {
-      interface.displayLanes(frame);
+      interface->displayLanes(frame);
     }
     std::cout << "To quit press any keystroke in the window" << std::endl;
     // Wait for a keystroke in the window
@@ -75,10 +75,10 @@ int FrameParser::extractFrame(UserInterface interface, bool test) {
 
   } else if (choice == 1) {
     // video input format
-    fileName = interface.returnInputLocation();
+    fileName = interface->returnInputLocation();
     cap = cv::VideoCapture(fileName);
   } else if (choice == 2) {
-    cID = interface.returnCameraID();
+    cID = interface->returnCameraID();
     cap = cv::VideoCapture(cID);
   }
   if (!cap.isOpened()) {
@@ -91,7 +91,7 @@ int FrameParser::extractFrame(UserInterface interface, bool test) {
     }
     frame = process.laneDetection(frame);
     if (test == false) {
-      interface.displayLanes(frame);
+      interface->displayLanes(frame);
     }
 
     // Press  ESC on keyboard to exit

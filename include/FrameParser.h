@@ -82,7 +82,7 @@ class FrameParser {
    * The following function will extract frames from the video input
    * and using the frames calls VisionModule and userInterface class
    */
-  int extractFrame(UserInterface interface, bool test);
+  int extractFrame(UserInterface* interface, bool test);
 };
 
 #endif /* INCLUDE_FRAMEPARSER_H_ */
