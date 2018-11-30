@@ -52,7 +52,7 @@ class MockUserInterface : public UserInterface {
 };
 
 /**
- *@brief  Case to test if extractFrame functions executes successfully
+ *@brief  Case to test if extractFrame functions executes successfully for image
  *@param  none
  *@return none
  */
@@ -67,6 +67,29 @@ TEST(extractFramesCheck, testProperReturnsAfterGoodRun1) {
 
   EXPECT_CALL(interface, returnInputLocation()).Times(AtLeast(1)).WillRepeatedly(
       Return("../data/test.png"));
+
+  std::cout << interface.returnDefaultChoice() << std::endl;
+  int returnValue;
+  returnValue = f.extractFrame(&interface, true);
+  ASSERT_EQ(returnValue, 0);
+}
+
+/**
+ *@brief  Case to test if extractFrame functions executes successfully for video
+ *@param  none
+ *@return none
+ */
+TEST(processImagecheck, testProperReturnsAfterGoodRun2) {
+  FrameParser f;
+  MockUserInterface interface;
+
+  EXPECT_CALL(interface, returnDefaultChoice()).Times(2).WillRepeatedly(
+      Return("y"));
+  //EXPECT_CALL(interface, returnCameraID()).Times(1).WillOnce(Return(15));
+  EXPECT_CALL(interface, returnUserChoice()).Times(1).WillOnce(Return(1));
+
+  EXPECT_CALL(interface, returnInputLocation()).Times(AtLeast(1)).WillRepeatedly(
+      Return("../data/testVideo.mp4"));
 
   std::cout << interface.returnDefaultChoice() << std::endl;
   int returnValue;
